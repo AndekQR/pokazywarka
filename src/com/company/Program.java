@@ -288,5 +288,3 @@ public class Program extends JPanel implements ActionListener {
         }
     }
 }
-
-/asd
