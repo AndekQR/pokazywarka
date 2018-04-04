@@ -1,0 +1,21 @@
+
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(şş¬¾ùÿÿÿÿ8û”Ùê¦,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8û”Ùê¦,
+gsquid:S1192"FDefine a constant instead of duplicating this literal ".jpeg" 3 times.(à’Œüÿÿÿÿ8èé¦,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öÇÑ½ûÿÿÿÿ8à‘½ì¦,
+Ksquid:S1066"/Merge this if statement with the enclosing one.(¸Şó8û”Ùê¦,
+Isquid:S1068"-Remove this unused "ramkaSize" private field.(ŸúË8ø¤îì¦,
+usquid:S1450"YRemove the "imagePanel" field and declare it as a local variable in the relevant methods.(¾º²ã8¡„Ñì¦,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ç¤Üûÿÿÿÿ8¿ñàê¦,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ğĞÿêşÿÿÿÿ8û”Ùê¦,
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(öáŠ8û”Ùê¦,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8èé¦,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8û”Ùê¦,
+Jsquid:S1948")Make "myImage" transient or serializable.(ÀÒ˜şÿÿÿÿ8èé¦,
+Asquid:S1948"%Make "kit" transient or serializable.(¤ÍÔ8èé¦,
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(õ»ÈÔ8û”Ùê¦,
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(·Ÿå¡8û”Ùê¦,
