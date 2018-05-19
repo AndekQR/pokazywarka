@@ -10,7 +10,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+//http://tech-algorithm.com/articles/nearest-neighbor-image-scaling/
+//
+//        int[][] pixels = new int[w][h];
+//
+//        for( int i = 0; i < w; i++ )
+//        for( int j = 0; j < h; j++ )
+//        pixels[i][j] = img.getRGB( i, j );
 
 public class Program extends JPanel implements ActionListener {
 
@@ -30,6 +36,8 @@ public class Program extends JPanel implements ActionListener {
     private JPanel imagePanel;
     private String[] listOfImages; //lista obrazów tylko w w folderze z aktualnym obrazie
     private int numberOfImage = -1; //bo po wejściu do next inkremetuje
+
+    public int[][] pixels; //obraz jako tablica pixeli, potrzebne do zoomowania
 
     private int imageWidth; // musza byc jako zmienne globalne bo korzysta z tego 3 metody;
     private int imageHeight;
@@ -82,6 +90,8 @@ public class Program extends JPanel implements ActionListener {
             imageWidth = myImage.getWidth(this);
             imageHeight = myImage.getHeight(this);
 
+            getMatrixOfPixels(imageWidth, imageHeight);
+
             imagePanel = new JPanel() {
                     @Override
                     protected void paintComponent(Graphics g) {
@@ -118,6 +128,7 @@ public class Program extends JPanel implements ActionListener {
             containerGlowny.add(imagePanel);
             ramka.pack();
             //ramka.repaint();
+            imagePanel.addMouseListener(new DoubleClick());
             searchForOthersImages(path);
 
 
@@ -287,4 +298,11 @@ public class Program extends JPanel implements ActionListener {
             imagePanel.repaint();
         }
     }
+
+    private void getMatrixOfPixels(int w, int h) {
+        for( int i = 0; i < w; i++ )
+            for( int j = 0; j < h; j++ )
+                pixels[i][j] = myImage.getRGB( i, j );
+    }
+
 }
