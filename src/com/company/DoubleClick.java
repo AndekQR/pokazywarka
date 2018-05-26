@@ -5,12 +5,14 @@ import java.awt.event.MouseListener;
 
 public class DoubleClick extends Program implements MouseListener {
 
+    Boolean isItZoom = false;
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
             System.out.println("DoubleClick@");
-        }
+            isItZoom = true;
+           }
     }
 
     @Override
