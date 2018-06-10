@@ -23,6 +23,7 @@ public class LoadImages extends JPanel{
     public BufferedImage myImage;
     private Container containerGlowny;
     private Buttons buttons;
+    public DoubleClick doubleClick;
 
 
 
@@ -53,7 +54,6 @@ public class LoadImages extends JPanel{
 
     public void loadImage()  {
 
-
         int r = chooser.showOpenDialog(chooser);
         if(r == JFileChooser.APPROVE_OPTION) {
             path = chooser.getSelectedFile().getAbsolutePath();
@@ -70,6 +70,7 @@ public class LoadImages extends JPanel{
 
 
             imagePanel = new JPanel() {
+
                 @Override
                 protected void paintComponent(Graphics g) {
                     Graphics2D g2 = (Graphics2D)g;
@@ -90,8 +91,8 @@ public class LoadImages extends JPanel{
                         int y_height = imageHeight;
 
                         while(x_width>this.getWidth() && y_height>this.getHeight()) {
-                            x_width = x_width/2;
-                            y_height = y_height/2;
+                            x_width =(int) (x_width - x_width*0.1);
+                            y_height =(int) (y_height- y_height*0.1);
                         }
 
 
@@ -105,9 +106,16 @@ public class LoadImages extends JPanel{
                         g2.drawImage(myImage, 0,0, this.getWidth(), this.getHeight(), this);
                     }
 
+                    if (!myImage.equals(doubleClick.image)) {
+                        System.out.println("rysowanie potrzebne");
+                    }
 
                 }
             };
+
+            doubleClick = new DoubleClick(containerGlowny, myImage, imagePanel);
+
+            imagePanel.addMouseListener(doubleClick);
 
 
 
@@ -125,8 +133,6 @@ public class LoadImages extends JPanel{
             ramka.setPreferredSize(ramkaSize);
             containerGlowny.add(imagePanel);
             ramka.pack();
-            //ramka.repaint();
-            //imagePanel.addMouseListener(objectDoubleClick);-----------------------------------------------------------
             System.out.println("-----------------------------------"+imageHeight);
             searchForOthersImages(path);
 
@@ -136,6 +142,8 @@ public class LoadImages extends JPanel{
 
     public void loadNextImage() {
         if (numberOfImage<listOfImages.length-1){
+            if (doubleClick.isItZoom)
+                doubleClick.unZoom();
             buttons.prev.setEnabled(true);
             ++numberOfImage;
             File imageFile = new File(listOfImages[numberOfImage]);
@@ -146,6 +154,8 @@ public class LoadImages extends JPanel{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            doubleClick.image = myImage;
 
             imageWidth = myImage.getWidth();
             imageHeight = myImage.getHeight();
@@ -161,6 +171,8 @@ public class LoadImages extends JPanel{
 
     public void loadPrevImage() {
         if (numberOfImage>0){
+            if (doubleClick.isItZoom)
+                doubleClick.unZoom();
             buttons.next.setEnabled(true);
             --numberOfImage;
             File imageFile = new File(listOfImages[numberOfImage]); //tworzenie obiektu typu File
@@ -171,6 +183,8 @@ public class LoadImages extends JPanel{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            doubleClick.image = myImage; //zeby klasa ShowCanvas miala aktualny obraz
 
             imageWidth = myImage.getWidth();
             imageHeight = myImage.getHeight();

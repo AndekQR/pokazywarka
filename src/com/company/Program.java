@@ -70,6 +70,9 @@ public class Program extends JPanel implements ActionListener {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            loadImages.doubleClick.unZoom();
+            loadImages.doubleClick.image = rotaedImage;
+
             loadImages.imagePanel.repaint();
 
         }
