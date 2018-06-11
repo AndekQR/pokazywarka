@@ -7,21 +7,16 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 
-final class ShowCanvas extends JPanel {
+class Zoom extends JPanel {
 
-    int imageX=0, imageY=0;
-    int lastMouseX=0, lastMouseY=0;
-    //int centerX = 225;
-    //int centerY = 225;
-    //int canvasWidth = 450;
-    //int canvasHeight = 450;
-    double scaleFactor=1.0;
-    //boolean firstMouseDrag = true;
-    BufferedImage image;
+    private int imageX=0, imageY=0;
+    private int lastMouseX=0, lastMouseY=0;
+    private double scaleFactor=1.0;
+    private BufferedImage image;
     private BufferedImage scaled;
     private Container container;
 
-    public ShowCanvas(Image rawImage, Container container) throws Exception {
+    public Zoom(Image rawImage, Container container) {
         this.container = container;
         container.repaint();
         this.setBackground(Color.BLACK);
@@ -29,10 +24,7 @@ final class ShowCanvas extends JPanel {
         this.addMouseMotionListener(mouseHandler);
         this.addMouseListener(mouseHandler);
         this.addMouseWheelListener(mouseHandler);
-        //File url = new File("images/obraz.jpg");
-        //Image rawImage = ImageIO.read(url);
-        image=new BufferedImage(rawImage.getWidth(this),
-                rawImage.getHeight(this), BufferedImage.TYPE_INT_ARGB);
+        image=new BufferedImage(rawImage.getWidth(this), rawImage.getHeight(this), BufferedImage.TYPE_INT_ARGB);
         this.setSize(container.getWidth(), container.getHeight());
         Graphics2D g2=image.createGraphics();
         g2.drawImage(rawImage, imageX, imageY, this);
@@ -40,10 +32,12 @@ final class ShowCanvas extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
+
         return new Dimension( (image.getWidth()), (image.getHeight()));
     }
 
     protected BufferedImage getScaledInstance() {
+
         if (scaled == null) {
             int width=(int) (image.getWidth() * scaleFactor);
             int height=(int) (image.getHeight() * scaleFactor);
@@ -59,33 +53,24 @@ final class ShowCanvas extends JPanel {
     }
 
     public Dimension getVirtualSize() {
-        return new Dimension(
-                (int) (getWidth() * scaleFactor),
-                (int) (getHeight() * scaleFactor));
+
+        return new Dimension((int) (getWidth() * scaleFactor), (int) (getHeight() * scaleFactor));
     }
 
     public Point getVirtualPoint(int x, int y) {
-        return new Point(
-                (int) (x * scaleFactor),
-                (int) (y * scaleFactor));
+
+        return new Point((int) (x * scaleFactor), (int) (y * scaleFactor));
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         Dimension vitualSize=getVirtualSize();
+
         int xOffset=(getWidth() - vitualSize.width) / 2;
         int yOffset=(getHeight() - vitualSize.height) / 2;
 
         Graphics2D g2D=(Graphics2D) g.create();
-        //g2D.setColor(Color.gray);
-        //g.fillRect(0, 0, image.getWidth(), image.getHeight());
-
-        //g2D.setColor(Color.GREEN);
-        //g2D.drawRect(xOffset, yOffset, vitualSize.width, vitualSize.height);
-        //g2D.setColor(Color.RED);
-        //g2D.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight());
-        //g2D.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
 
         Point virtualPoint=getVirtualPoint(imageX, imageY);
         System.out.println(virtualPoint);
@@ -97,23 +82,27 @@ final class ShowCanvas extends JPanel {
             MouseListener, MouseWheelListener {
 
         public void mousePressed(MouseEvent e) {
+
             lastMouseX=e.getX();
             lastMouseY=e.getY();
             container.repaint();
         }
 
         public void mouseDragged(MouseEvent e) {
+
             int xDiff=e.getX() - lastMouseX;
             int yDiff=e.getY() - lastMouseY;
             imageX=imageX + xDiff;
             imageY=imageY + yDiff;
             lastMouseX=e.getX();
             lastMouseY=e.getY();
+
             container.repaint();
             repaint();
         }
 
         public void mouseWheelMoved(MouseWheelEvent e) {
+
             scaled=null;
             int notches=e.getWheelRotation();
 

@@ -120,7 +120,7 @@ public class LoadImages extends JPanel{
 
 
 
-            buttons.prev.setEnabled(true);
+            //buttons.prev.setEnabled(true);
             buttons.next.setEnabled(true);
             buttons.rotate.setEnabled(true);
 
@@ -144,6 +144,10 @@ public class LoadImages extends JPanel{
         if (numberOfImage<listOfImages.length-1){
             if (doubleClick.isItZoom)
                 doubleClick.unZoom();
+
+            if (!buttons.prev.isEnabled()){
+                buttons.prev.setEnabled(true);
+            }
             buttons.prev.setEnabled(true);
             ++numberOfImage;
             File imageFile = new File(listOfImages[numberOfImage]);
@@ -184,7 +188,7 @@ public class LoadImages extends JPanel{
                 e.printStackTrace();
             }
 
-            doubleClick.image = myImage; //zeby klasa ShowCanvas miala aktualny obraz
+            doubleClick.image = myImage; //zeby klasa Zoom miala aktualny obraz
 
             imageWidth = myImage.getWidth();
             imageHeight = myImage.getHeight();

@@ -6,13 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-public class DoubleClick extends Program implements MouseListener {
+public class DoubleClick implements MouseListener {
 
     public Boolean isItZoom = false;
     public BufferedImage image;
     private Container container;
     private JPanel imagePanel;
-    private ShowCanvas showCanvas;
+    private Zoom zoom;
 
 
     public DoubleClick(Container container, BufferedImage image, JPanel imagePanel){
@@ -31,14 +31,14 @@ public class DoubleClick extends Program implements MouseListener {
                 container.remove(imagePanel);
 
                 try {
-                    showCanvas = new ShowCanvas(image, container);
-                    showCanvas.addMouseListener(this);
+                    zoom= new Zoom(image, container);
+                    zoom.addMouseListener(this);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
-                container.add(showCanvas);
-                showCanvas.repaint();
+                container.add(zoom);
+                zoom.repaint();
                 //container.repaint();
             }
             else if (isItZoom==true){
@@ -50,7 +50,7 @@ public class DoubleClick extends Program implements MouseListener {
 
     public void unZoom(){
         isItZoom = false;
-        container.remove(showCanvas);
+        container.remove(zoom);
         container.add(imagePanel);
         container.repaint();
     }
