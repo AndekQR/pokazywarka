@@ -2,11 +2,10 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
-public class DoubleClick implements MouseListener {
+public class DoubleClick extends MouseMotionAdapter implements MouseListener, MouseWheelListener {
     /*klasa implementuje MouseListener*/
 
     public Boolean isItZoom = false;
@@ -16,12 +15,15 @@ public class DoubleClick implements MouseListener {
     private Zoom zoom;
 
 
+
     public DoubleClick(Container container, BufferedImage image, JPanel imagePanel){
         this.image = image;
         this.container = container;
         this.imagePanel = imagePanel;
 
     }
+
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -61,7 +63,6 @@ public class DoubleClick implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
@@ -78,4 +79,10 @@ public class DoubleClick implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+    }
 }
+
