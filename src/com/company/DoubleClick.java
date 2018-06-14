@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 public class DoubleClick implements MouseListener {
+    /*klasa implementuje MouseListener*/
 
     public Boolean isItZoom = false;
     public BufferedImage image;
@@ -24,6 +25,8 @@ public class DoubleClick implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        /*jeżeli użytkownik naciśnie dwa razy lmp
+        * to usuwany jest imagePanel i wstawiany jest JScrollPane który zwracany jest z klasy Zoom*/
         if (e.getClickCount() == 2) {
             if (isItZoom==false) {
                 System.out.println("DoubleClick@");
@@ -49,6 +52,7 @@ public class DoubleClick implements MouseListener {
     }
 
     public void unZoom(){
+        /*wyjście z zoomu, przywraca imagePanel*/
         isItZoom = false;
         container.remove(zoom);
         container.add(imagePanel);

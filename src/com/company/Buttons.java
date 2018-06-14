@@ -22,6 +22,9 @@ public class Buttons {
     }
 
     private void addButtons() {
+        /*tworzy nowy JPanel, a w nim dodatkowe 3 jPanele
+        * aby przyciski były oddzielone od siebie
+        * ustawia odpowiedni layout*/
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(1,3));
         containerGlowny.add(buttonsPanel);
@@ -47,6 +50,8 @@ public class Buttons {
         panele[0].add(rotate, BorderLayout.WEST);
         panele[1].add(prev);
         panele[1].add(next);
+
+        /*na początku przyciski są nieaktywne*/
 
         prev.setEnabled(false);
         next.setEnabled(false);

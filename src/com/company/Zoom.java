@@ -17,6 +17,7 @@ class Zoom extends JPanel {
     private Container container;
 
     public Zoom(Image rawImage, Container container) {
+        /**/
         this.container = container;
         container.repaint();
         this.setBackground(Color.BLACK);

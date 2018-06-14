@@ -13,11 +13,11 @@ import java.io.IOException;
 public class Program extends JPanel implements ActionListener {
 
 
-    public JFrame ramka;
+    public JFrame ramka; //główne okno programu
     private Container containerGlowny;
 
 
-    Buttons buttons;
+    Buttons buttons; //obiekt klasy Buttons
     LoadImages loadImages;
     Rotate rotate;
 
@@ -25,6 +25,7 @@ public class Program extends JPanel implements ActionListener {
 
 
     public void addFrame() {
+        /*- dodanie opisu okna, ustawienie rozmiarow, ustawienie managera rozkldu, dodanie przyciskow do okna, dodanie ramki ktora wyswietla obraz, odanie sluchaczy zdarzen do przyciskow*/
         ramka = new JFrame("Przeglądarka zdjec");
         ramka.setSize(500,80);
         ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +47,7 @@ public class Program extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        /*metoda wykonuje odpowiednie dzialania po zarejestrowanie zdarzenia od konkretnych przyciskow*/
         Object source = e.getSource();
         System.out.println(loadImages.path);
         if (source==buttons.search) {
@@ -65,7 +67,7 @@ public class Program extends JPanel implements ActionListener {
             rotate = new Rotate(loadImages.myImage);
            BufferedImage rotaedImage = rotate.rotate();
             try {
-                ImageIO.write(rotaedImage, loadImages.path.substring(loadImages.path.lastIndexOf(".")+1), new File(loadImages.path));
+                ImageIO.write(rotaedImage, loadImages.path.substring(loadImages.path.lastIndexOf(".")+1), new File(loadImages.path)); //zapis obróconego obrazu do pliku źródłowego
                 loadImages.myImage = rotaedImage;
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -74,7 +76,7 @@ public class Program extends JPanel implements ActionListener {
             if (loadImages.doubleClick.isItZoom){
                 loadImages.doubleClick.unZoom();
             }
-            loadImages.doubleClick.image = rotaedImage;
+            //loadImages.doubleClick.image = rotaedImage;
 
             loadImages.imagePanel.repaint();
 
