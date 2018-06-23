@@ -54,15 +54,21 @@ class Zoom extends JPanel {
               return scaled;
           }
 
+
+
           public Dimension getVirtualSize () {
 
-              return new Dimension((int) (getWidth() * scaleFactor), (int) (getHeight() * scaleFactor));
+              return new Dimension((int)(getWidth() * scaleFactor), (int)(getHeight() * scaleFactor));
           }
+
+
 
           public Point getVirtualPoint ( int x, int y){
 
               return new Point((int) (x * scaleFactor), (int) (y * scaleFactor));
           }
+
+
 
           public void paintComponent (Graphics g){
               super.paintComponent(g);

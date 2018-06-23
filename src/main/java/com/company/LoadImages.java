@@ -55,7 +55,7 @@ public class LoadImages extends JPanel{
 
 
     public void loadImage()  {
-        /*Uruchomienie okno FileChooser
+        /*Uruchomienie okna FileChooser
         * wczytanie obrazu z podanej scieżki do obiektu typu BufferedImage
         * za rysowanie obrazu jest odpowiedzialna klasa wenętrzna obiektu ImagePanel-
         * jest to nadpisana metoda paintComponent()
